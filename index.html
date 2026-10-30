@@ -351,23 +351,20 @@
         </div>
     </div>
 
-    <!-- ✅ ПРАВИЛЬНЫЙ СКРИПТ С sendData -->
     <script>
-        function sendAction(action) {
-            if (window.Telegram && window.Telegram.WebApp) {
-                const tg = window.Telegram.WebApp;
-                // ОТПРАВЛЯЕМ ДАННЫЕ БОТУ И ЗАКРЫВАЕМ MINI APP
-                tg.sendData(action);
-            } else {
-                alert('Действие: ' + action + '\n(В Telegram это отправит данные боту)');
-            }
-        }
-        
+    function sendAction(action) {
+        console.log('Button clicked:', action);
         if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.ready();
-            window.Telegram.WebApp.expand();
-            window.Telegram.WebApp.setHeaderColor('#040d0a');
+            const tg = window.Telegram.WebApp;
+            tg.sendData(action);
+        } else {
+            alert('В Telegram это отправит: ' + action + '\n(Сейчас ты в браузере)');
         }
-    </script>
-</body>
-</html>
+    }
+    
+    if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
+        window.Telegram.WebApp.setHeaderColor('#040d0a');
+    }
+</script>
